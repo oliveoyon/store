@@ -1,0 +1,8 @@
+			$endover=$totalball[0]['total_ball']/6;
+			if(($endover!=0) AND is_int($endover))
+                {
+                  $offstrike=$this->mdb->getData('todays_player',array('team_id'=>$send['match'][0]['onbatting'],'active'=>1,'status'=>1,'onstrike'=>0));
+                  $this->mdb->update('todays_player',array('onstrike'=>0),array('team_id'=>$send['match'][0]['onbatting']));
+                  $this->mdb->update('todays_player',array('onstrike'=>0),array('team_id'=>$send['match'][0]['onbowling']));
+                  $this->mdb->update('todays_player',array('onstrike'=>1),array('team_id'=>$send['match'][0]['onbatting'],'player_id'=>$offstrike[0]['player_id'])); 
+                } //end of endover
